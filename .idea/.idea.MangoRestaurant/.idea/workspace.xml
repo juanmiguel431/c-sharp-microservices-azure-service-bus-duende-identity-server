@@ -10,15 +10,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65e98e03-d104-4667-bb34-fdf534dc9e51" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Mango.Web/Views/Shared/_Footer.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Mango.Web/Views/Shared/_Footer.cshtml.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Mango.Web/Views/Shared/_Header.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Mango.Web/Views/Shared/_Header.cshtml.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MangoRestaurant/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MangoRestaurant/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mango.Web/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Mango.Web/Views/Shared/_Layout.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mango.Web/Views/Shared/_Layout.cshtml.css" beforeDir="false" afterPath="$PROJECT_DIR$/Mango.Web/Views/Shared/_Layout.cshtml.css" afterDir="false" />
-    </list>
+    <list default="true" id="65e98e03-d104-4667-bb34-fdf534dc9e51" name="Changes" comment="Idea config file." />
     <list id="409990f0-1987-401b-9734-4744956c4df7" name="idea" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +123,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1666408640281</updated>
-      <workItem from="1666408645279" duration="1421000" />
+      <workItem from="1666408645279" duration="1596000" />
     </task>
     <task id="LOCAL-00001" summary="idea config files.">
       <created>1666408877269</created>
@@ -140,7 +132,21 @@
       <option name="project" value="LOCAL" />
       <updated>1666408877269</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Header and footer separated.">
+      <created>1666410156661</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1666410156661</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Idea config file.">
+      <created>1666410202898</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1666410202898</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,6 +168,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="idea config files." />
-    <option name="LAST_COMMIT_MESSAGE" value="idea config files." />
+    <MESSAGE value="Header and footer separated." />
+    <MESSAGE value="Idea config file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Idea config file." />
   </component>
 </project>
