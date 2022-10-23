@@ -10,7 +10,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65e98e03-d104-4667-bb34-fdf534dc9e51" name="Changes" comment="Idea config file." />
+    <list default="true" id="65e98e03-d104-4667-bb34-fdf534dc9e51" name="Changes" comment="idea config files">
+      <change afterPath="$PROJECT_DIR$/Mango.Web/Controllers/ProductController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mango.Web/Views/Product/ProductIndex.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MangoRestaurant/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MangoRestaurant/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mango.Web/Views/Shared/_Header.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Mango.Web/Views/Shared/_Header.cshtml" afterDir="false" />
+    </list>
     <list id="409990f0-1987-401b-9734-4744956c4df7" name="idea" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +33,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/df71358f7b7337a1eee3a65abe6d678dd9a065e256b8cc3fd44a2949754/Object.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e7e231682be8652744726acc6de35323daa68061429db55e0c251114902f60/String.Manipulation.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/work/udemy/.NET Core Microservices/MangoRestaurant/Mango.Web/Views/Shared/_Layout.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/work/udemy/.NET Core Microservices/MangoRestaurant/Mango.Web/Views/Shared/_Layout.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="SKIP_HIGHLIGHTING" />
   </component>
@@ -52,7 +59,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.Mango.Web">
+  <component name="RunManager" selected=".NET Launch Settings Profile.Mango.Services.ProductApi">
     <configuration name="Mango.Services.ProductApi" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Mango.Services.ProductApi/Mango.Services.ProductApi.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net6.0" />
@@ -123,7 +130,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1666408640281</updated>
-      <workItem from="1666408645279" duration="1596000" />
+      <workItem from="1666408645279" duration="4552000" />
     </task>
     <task id="LOCAL-00001" summary="idea config files.">
       <created>1666408877269</created>
@@ -146,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666410202898</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="idea config files">
+      <created>1666484941103</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1666484941103</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,6 +184,27 @@
     <MESSAGE value="idea config files." />
     <MESSAGE value="Header and footer separated." />
     <MESSAGE value="Idea config file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Idea config file." />
+    <MESSAGE value="idea config files" />
+    <option name="LAST_COMMIT_MESSAGE" value="idea config files" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Mango.Web/Views/Product/ProductIndex.cshtml</url>
+          <line>4</line>
+          <properties documentPath="C:\work\udemy\.NET Core Microservices\MangoRestaurant\Mango.Web\Pages\Product\ProductIndex.cshtml" initialLine="4" isMultiMethodBreakpoint="true">
+            <option name="multiMethodBreakpoint" value="true" />
+            <startOffsets>
+              <option value="-1" />
+            </startOffsets>
+            <endOffsets>
+              <option value="-1" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
