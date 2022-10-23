@@ -1,8 +1,45 @@
-﻿@model List<ProductDto>
+﻿@model IEnumerable<ProductDto>
 
 @{
     ViewBag.Title = "title";
     Layout = "_Layout";
 }
 
-<h2>title</h2>
+<div class="container p-4 border">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-primary">Product List</h1>
+        </div>
+        <div class="col text-end pt-1">
+            <a asp-action="Create" class="btn btn-outline-info"><i class="gas fa-plus"></i> Create new product</a>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category name</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.CategoryName</td>
+                <td>@item.Price.ToString("C")</td>
+                <td>
+                    <a asp-action="EditProduct" asp-route-productId="@item.ProductId" class="btn btn-success">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a asp-action="DeleteProduct" asp-route-productId="@item.ProductId" class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
