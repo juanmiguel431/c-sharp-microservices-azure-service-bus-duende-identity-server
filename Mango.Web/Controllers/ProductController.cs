@@ -28,4 +28,23 @@ public class ProductController : Controller
         }
         return View(list);
     }
+    
+    public async Task<IActionResult> ProductCreate()
+    {
+        return View();
+    }
+    
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> ProductCreate(ProductDto productDto)
+    {
+        if (!ModelState.IsValid) return View(productDto);
+
+        var response = await _productService.CreateProductAsync<ResponseDto>(productDto);
+        if (response != null && response.IsSuccess)
+        {
+            return RedirectToAction(nameof(ProductIndex));
+        }
+
+        return View(productDto);
+    }
 }
