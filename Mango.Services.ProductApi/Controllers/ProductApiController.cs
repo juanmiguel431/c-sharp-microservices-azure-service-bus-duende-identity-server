@@ -50,7 +50,7 @@ namespace Mango.Services.ProductApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ResponseDto> Post(ProductDto productDto)
+        public async Task<ResponseDto> Post([FromBody] ProductDto productDto)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace Mango.Services.ProductApi.Controllers
         }
 
         [HttpPut]
-        public async Task<ResponseDto> Put(ProductDto productDto)
+        public async Task<ResponseDto> Put([FromBody] ProductDto productDto)
         {
             try
             {
