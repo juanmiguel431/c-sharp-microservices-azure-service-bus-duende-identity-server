@@ -51,9 +51,10 @@ public class ProductController : Controller
     public async Task<IActionResult> ProductEdit(int productId)
     {
         var response = await _productService.GetProductByIdAsync<ResponseDto>(productId);
-        if (response != null && response.IsSuccess)
+        if (response != null && response.IsSuccess && response.Result != null)
         {
-            ProductDto? product = JsonConvert.DeserializeObject<ProductDto>(Convert.ToString(response.Result));
+            var serializedObject = Convert.ToString(response.Result);
+            var product = JsonConvert.DeserializeObject<ProductDto>(serializedObject);
             return View(product);
         }
 
