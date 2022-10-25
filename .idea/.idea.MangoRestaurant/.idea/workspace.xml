@@ -11,12 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65e98e03-d104-4667-bb34-fdf534dc9e51" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Mango.Web/Views/Product/ProductCreate.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MangoRestaurant/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MangoRestaurant/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mango.Services.ProductApi/Controllers/ProductApiController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Mango.Services.ProductApi/Controllers/ProductApiController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mango.Web/Controllers/ProductController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Mango.Web/Controllers/ProductController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mango.Web/Services/BaseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Mango.Web/Services/BaseService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mango.Web/Views/Product/ProductIndex.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Mango.Web/Views/Product/ProductIndex.cshtml" afterDir="false" />
     </list>
     <list id="409990f0-1987-401b-9734-4744956c4df7" name="idea" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +32,12 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/df71358f7b7337a1eee3a65abe6d678dd9a065e256b8cc3fd44a2949754/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e7e231682be8652744726acc6de35323daa68061429db55e0c251114902f60/String.Manipulation.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/faf4a4b37056302738a46865827c3d2d3b6b1b977603a3932b0cd749921118/Controller.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/work/udemy/.NET Core Microservices/MangoRestaurant/Mango.Services.ProductApi/Controllers/ProductApiController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/work/udemy/.NET Core Microservices/MangoRestaurant/Mango.Web/Controllers/ProductController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/work/udemy/.NET Core Microservices/MangoRestaurant/Mango.Web/Services/BaseService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/work/udemy/.NET Core Microservices/MangoRestaurant/Mango.Web/Services/BaseService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/work/udemy/.NET Core Microservices/MangoRestaurant/Mango.Web/Views/Product/ProductIndex.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />

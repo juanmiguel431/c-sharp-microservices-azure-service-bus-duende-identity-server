@@ -2,99 +2,97 @@
 using Mango.Services.ProductApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Mango.Services.ProductApi.Controllers
+namespace Mango.Services.ProductApi.Controllers;
+
+[Route("api/products")]
+public class ProductApiController : Controller
 {
-    [Route("api/products")]
-    public class ProductApiController : Controller
+    private readonly ResponseDto _response;
+    private readonly IProductRepository _productRepository;
+
+    public ProductApiController(IProductRepository productRepository)
     {
+        _productRepository = productRepository;
+        _response = new ResponseDto();
+    }
 
-        protected ResponseDto _response;
-        private readonly IProductRepository _productRepository;
-
-        public ProductApiController(IProductRepository productRepository)
+    [HttpGet]
+    public async Task<ResponseDto> Get()
+    {
+        try
         {
-            _productRepository = productRepository;
-            _response = new ResponseDto();
+            IEnumerable<ProductDto> productDtos = await _productRepository.GetProducts();
+            _response.Result = productDtos;
         }
-
-        [HttpGet]
-        public async Task<ResponseDto> Get()
+        catch (Exception e)
         {
-            try
-            {
-                IEnumerable<ProductDto> productDtos = await _productRepository.GetProducts();
-                _response.Result = productDtos;
-            }
-            catch (Exception e)
-            {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { e.ToString() };
-            }
-            return _response;
+            _response.IsSuccess = false;
+            _response.ErrorMessages = new List<string> { e.ToString() };
         }
+        return _response;
+    }
 
-        [HttpGet, Route("{id}")]
-        public async Task<ResponseDto> Get(int id)
+    [HttpGet, Route("{id}")]
+    public async Task<ResponseDto> Get(int id)
+    {
+        try
         {
-            try
-            {
-                var productDto = await _productRepository.GetProductById(id);
-                _response.Result = productDto;
-            }
-            catch (Exception e)
-            {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { e.ToString() };
-            }
-            return _response;
+            var productDto = await _productRepository.GetProductById(id);
+            _response.Result = productDto;
         }
+        catch (Exception e)
+        {
+            _response.IsSuccess = false;
+            _response.ErrorMessages = new List<string> { e.ToString() };
+        }
+        return _response;
+    }
 
-        [HttpPost]
-        public async Task<ResponseDto> Post([FromBody] ProductDto productDto)
+    [HttpPost]
+    public async Task<ResponseDto> Post([FromBody] ProductDto productDto)
+    {
+        try
         {
-            try
-            {
-                var model = await _productRepository.CreateUpdateProduct(productDto);
-                _response.Result = model;
-            }
-            catch (Exception e)
-            {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { e.ToString() };
-            }
-            return _response;
+            var model = await _productRepository.CreateUpdateProduct(productDto);
+            _response.Result = model;
         }
+        catch (Exception e)
+        {
+            _response.IsSuccess = false;
+            _response.ErrorMessages = new List<string> { e.ToString() };
+        }
+        return _response;
+    }
 
-        [HttpPut]
-        public async Task<ResponseDto> Put([FromBody] ProductDto productDto)
+    [HttpPut]
+    public async Task<ResponseDto> Put([FromBody] ProductDto productDto)
+    {
+        try
         {
-            try
-            {
-                var model = await _productRepository.CreateUpdateProduct(productDto);
-                _response.Result = model;
-            }
-            catch (Exception e)
-            {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { e.ToString() };
-            }
-            return _response;
+            var model = await _productRepository.CreateUpdateProduct(productDto);
+            _response.Result = model;
         }
+        catch (Exception e)
+        {
+            _response.IsSuccess = false;
+            _response.ErrorMessages = new List<string> { e.ToString() };
+        }
+        return _response;
+    }
 
-        [HttpDelete]
-        public async Task<ResponseDto> Delete(int id)
+    [HttpDelete]
+    public async Task<ResponseDto> Delete(int id)
+    {
+        try
         {
-            try
-            {
-                var isSuccess = await _productRepository.DeleteProduct(id);
-                _response.IsSuccess= isSuccess;
-            }
-            catch (Exception e)
-            {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { e.ToString() };
-            }
-            return _response;
+            var isSuccess = await _productRepository.DeleteProduct(id);
+            _response.IsSuccess= isSuccess;
         }
+        catch (Exception e)
+        {
+            _response.IsSuccess = false;
+            _response.ErrorMessages = new List<string> { e.ToString() };
+        }
+        return _response;
     }
 }
