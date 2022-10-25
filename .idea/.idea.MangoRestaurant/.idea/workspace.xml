@@ -11,7 +11,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65e98e03-d104-4667-bb34-fdf534dc9e51" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Mango.Web/Views/Product/ProductEdit.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MangoRestaurant/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MangoRestaurant/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mango.Web/Controllers/ProductController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Mango.Web/Controllers/ProductController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mango.Web/Services/IServices/IProductServices.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Mango.Web/Services/IServices/IProductServices.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mango.Web/Services/ProductService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Mango.Web/Services/ProductService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mango.Web/Views/Product/ProductCreate.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Mango.Web/Views/Product/ProductCreate.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mango.Web/Views/Product/ProductIndex.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Mango.Web/Views/Product/ProductIndex.cshtml" afterDir="false" />
     </list>
     <list id="409990f0-1987-401b-9734-4744956c4df7" name="idea" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,11 +39,11 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/df71358f7b7337a1eee3a65abe6d678dd9a065e256b8cc3fd44a2949754/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e7e231682be8652744726acc6de35323daa68061429db55e0c251114902f60/String.Manipulation.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/faf4a4b37056302738a46865827c3d2d3b6b1b977603a3932b0cd749921118/Controller.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/work/udemy/.NET Core Microservices/MangoRestaurant/Mango.Services.ProductApi/Controllers/ProductApiController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/work/udemy/.NET Core Microservices/MangoRestaurant/Mango.Web/Controllers/ProductController.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/work/udemy/.NET Core Microservices/MangoRestaurant/Mango.Web/Services/BaseService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/work/udemy/.NET Core Microservices/MangoRestaurant/Mango.Web/Services/BaseService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/work/udemy/.NET Core Microservices/MangoRestaurant/Mango.Web/Views/Product/ProductIndex.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/work/udemy/.NET Core Microservices/MangoRestaurant/Mango.Web/Controllers/ProductController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/work/udemy/.NET Core Microservices/MangoRestaurant/Mango.Web/Services/IServices/IProductServices.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/work/udemy/.NET Core Microservices/MangoRestaurant/Mango.Web/Services/IServices/IProductServices.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/work/udemy/.NET Core Microservices/MangoRestaurant/Mango.Web/Services/ProductService.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -133,6 +139,8 @@
       <updated>1666408640281</updated>
       <workItem from="1666408645279" duration="12835000" />
       <workItem from="1666616862131" duration="299000" />
+      <workItem from="1666657125792" duration="281000" />
+      <workItem from="1666658409885" duration="604000" />
     </task>
     <task id="LOCAL-00001" summary="idea config files.">
       <created>1666408877269</created>
@@ -190,7 +198,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666497126804</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Refactor.">
+      <created>1666657203702</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1666657203702</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,90 +233,7 @@
     <MESSAGE value="idea config files" />
     <MESSAGE value="List of products UI added." />
     <MESSAGE value="Idea workspace change." />
-    <option name="LAST_COMMIT_MESSAGE" value="Idea workspace change." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Mango.Web/Controllers/ProductController.cs</url>
-          <line>39</line>
-          <properties documentPath="C:\work\udemy\.NET Core Microservices\MangoRestaurant\Mango.Web\Controllers\ProductController.cs" initialLine="39" containingFunctionPresentation="method 'ProductCreate'">
-            <startOffsets>
-              <option value="1052" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1076" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Mango.Services.ProductApi/Controllers/ProductApiController.cs</url>
-          <line>61</line>
-          <properties documentPath="C:\work\udemy\.NET Core Microservices\MangoRestaurant\Mango.Services.ProductApi\Controllers\ProductApiController.cs" initialLine="61" containingFunctionPresentation="method 'Post'">
-            <startOffsets>
-              <option value="1865" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1893" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Mango.Services.ProductApi/Controllers/ProductApiController.cs</url>
-          <line>56</line>
-          <properties documentPath="C:\work\udemy\.NET Core Microservices\MangoRestaurant\Mango.Services.ProductApi\Controllers\ProductApiController.cs" initialLine="56" containingFunctionPresentation="method 'Post'">
-            <startOffsets>
-              <option value="1677" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1746" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Mango.Web/Services/BaseService.cs</url>
-          <line>65</line>
-          <properties documentPath="C:\work\udemy\.NET Core Microservices\MangoRestaurant\Mango.Web\Services\BaseService.cs" initialLine="65" containingFunctionPresentation="method 'SendAsync'">
-            <startOffsets>
-              <option value="2318" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2368" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Mango.Web/Services/BaseService.cs</url>
-          <line>23</line>
-          <properties documentPath="C:\work\udemy\.NET Core Microservices\MangoRestaurant\Mango.Web\Services\BaseService.cs" initialLine="23" containingFunctionPresentation="method 'SendAsync'">
-            <startOffsets>
-              <option value="614" />
-            </startOffsets>
-            <endOffsets>
-              <option value="670" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Mango.Web/Services/BaseService.cs</url>
-          <line>36</line>
-          <properties documentPath="C:\work\udemy\.NET Core Microservices\MangoRestaurant\Mango.Web\Services\BaseService.cs" initialLine="36" containingFunctionPresentation="method 'SendAsync'">
-            <startOffsets>
-              <option value="1156" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1239" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Refactor." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor." />
   </component>
 </project>

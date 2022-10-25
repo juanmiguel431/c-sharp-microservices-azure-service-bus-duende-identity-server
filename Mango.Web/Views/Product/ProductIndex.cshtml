@@ -31,10 +31,10 @@
                 <td>@item.CategoryName</td>
                 <td>@item.Price.ToString("C")</td>
                 <td>
-                    <a asp-action="EditProduct" asp-route-productId="@item.ProductId" class="btn btn-success">
+                    <a asp-action="ProductEdit" asp-route-productId="@item.ProductId" class="btn btn-success">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a asp-action="DeleteProduct" asp-route-productId="@item.ProductId" class="btn btn-danger">
+                    <a asp-action="ProductDelete" asp-route-productId="@item.ProductId" class="btn btn-danger">
                         <i class="fas fa-trash"></i>
                     </a>
                 </td>

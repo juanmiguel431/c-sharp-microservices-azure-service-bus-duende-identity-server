@@ -29,7 +29,7 @@ public class ProductService : BaseService, IProductService
         });
     }
 
-    public async Task<T?> GetAllProductByIdAsync<T>(int id)
+    public async Task<T?> GetProductByIdAsync<T>(int id)
     {
         return await SendAsync<T>(new ApiRequest()
         {
