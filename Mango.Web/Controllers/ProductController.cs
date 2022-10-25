@@ -74,4 +74,29 @@ public class ProductController : Controller
 
         return View(productDto);
     }
+    
+    public async Task<IActionResult> ProductDelete(int productId)
+    {
+        var response = await _productService.GetProductByIdAsync<ResponseDto>(productId);
+        if (response != null && response.IsSuccess && response.Result != null)
+        {
+            var serializedObject = Convert.ToString(response.Result);
+            var product = JsonConvert.DeserializeObject<ProductDto>(serializedObject);
+            return View(product);
+        }
+
+        return NotFound();
+    }
+    
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> ProductDelete(ProductDto productDto)
+    {
+        var response = await _productService.DeleteProductAsync<ResponseDto>(productDto.ProductId);
+        if (response != null && response.IsSuccess)
+        {
+            return RedirectToAction(nameof(ProductIndex));
+        }
+
+        return View(productDto);
+    }
 }

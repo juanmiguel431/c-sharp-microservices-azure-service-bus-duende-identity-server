@@ -10,7 +10,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65e98e03-d104-4667-bb34-fdf534dc9e51" name="Changes" comment="Edit Product added." />
+    <list default="true" id="65e98e03-d104-4667-bb34-fdf534dc9e51" name="Changes" comment="Product Edit - No found issue fixed.">
+      <change afterPath="$PROJECT_DIR$/Mango.Web/Views/Product/ProductDelete.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MangoRestaurant/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MangoRestaurant/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mango.Services.ProductApi/Controllers/ProductApiController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Mango.Services.ProductApi/Controllers/ProductApiController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mango.Web/Controllers/ProductController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Mango.Web/Controllers/ProductController.cs" afterDir="false" />
+    </list>
     <list id="409990f0-1987-401b-9734-4744956c4df7" name="idea" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +37,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/df71358f7b7337a1eee3a65abe6d678dd9a065e256b8cc3fd44a2949754/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e7e231682be8652744726acc6de35323daa68061429db55e0c251114902f60/String.Manipulation.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/faf4a4b37056302738a46865827c3d2d3b6b1b977603a3932b0cd749921118/Controller.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/work/udemy/.NET Core Microservices/MangoRestaurant/Mango.Web/Controllers/ProductController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/work/udemy/.NET Core Microservices/MangoRestaurant/Mango.Web/Controllers/ProductController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/work/udemy/.NET Core Microservices/MangoRestaurant/Mango.Web/Controllers/ProductController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/work/udemy/.NET Core Microservices/MangoRestaurant/Mango.Web/Services/IServices/IProductServices.cs" root0="SKIP_HIGHLIGHTING" />
@@ -134,7 +140,7 @@
       <workItem from="1666408645279" duration="12835000" />
       <workItem from="1666616862131" duration="299000" />
       <workItem from="1666657125792" duration="281000" />
-      <workItem from="1666658409885" duration="946000" />
+      <workItem from="1666658409885" duration="2825000" />
     </task>
     <task id="LOCAL-00001" summary="idea config files.">
       <created>1666408877269</created>
@@ -206,7 +212,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666659111033</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Product Edit - No found issue fixed.">
+      <created>1666659712434</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1666659712434</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,23 +249,24 @@
     <MESSAGE value="Idea workspace change." />
     <MESSAGE value="Refactor." />
     <MESSAGE value="Edit Product added." />
-    <option name="LAST_COMMIT_MESSAGE" value="Edit Product added." />
+    <MESSAGE value="Product Edit - No found issue fixed." />
+    <option name="LAST_COMMIT_MESSAGE" value="Product Edit - No found issue fixed." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Mango.Web/Controllers/ProductController.cs</url>
-          <line>52</line>
-          <properties documentPath="C:\work\udemy\.NET Core Microservices\MangoRestaurant\Mango.Web\Controllers\ProductController.cs" initialLine="52" containingFunctionPresentation="method 'ProductEdit'">
+          <line>93</line>
+          <properties documentPath="C:\work\udemy\.NET Core Microservices\MangoRestaurant\Mango.Web\Controllers\ProductController.cs" initialLine="93" containingFunctionPresentation="method 'ProductDelete'">
             <startOffsets>
-              <option value="1447" />
+              <option value="2922" />
             </startOffsets>
             <endOffsets>
-              <option value="1528" />
+              <option value="3013" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Mango.Web/Services/BaseService.cs</url>
@@ -265,20 +279,20 @@
               <option value="614" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="2" />
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Mango.Services.ProductApi/Controllers/ProductApiController.cs</url>
-          <line>39</line>
-          <properties documentPath="C:\work\udemy\.NET Core Microservices\MangoRestaurant\Mango.Services.ProductApi\Controllers\ProductApiController.cs" initialLine="39" containingFunctionPresentation="method 'Get'">
+          <line>87</line>
+          <properties documentPath="C:\work\udemy\.NET Core Microservices\MangoRestaurant\Mango.Services.ProductApi\Controllers\ProductApiController.cs" initialLine="87" containingFunctionPresentation="method 'Delete'">
             <startOffsets>
-              <option value="1060" />
+              <option value="2374" />
             </startOffsets>
             <endOffsets>
-              <option value="1121" />
+              <option value="2433" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="3" />
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

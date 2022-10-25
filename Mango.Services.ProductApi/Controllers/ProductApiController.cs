@@ -80,7 +80,7 @@ public class ProductApiController : Controller
         return _response;
     }
 
-    [HttpDelete]
+    [HttpDelete, Route("{id}")]
     public async Task<ResponseDto> Delete(int id)
     {
         try
