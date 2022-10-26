@@ -3,10 +3,9 @@
 
 
 
-namespace IdentityServerHost.Quickstart.UI
+namespace Mango.Services.Identity.Controllers.Account;
+
+public class RedirectViewModel
 {
-    public class RedirectViewModel
-    {
-        public string RedirectUrl { get; set; }
-    }
+    public string RedirectUrl { get; set; }
 }
