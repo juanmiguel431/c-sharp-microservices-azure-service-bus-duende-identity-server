@@ -15,7 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo() { Title = "Mango.services.ProductApi" });
+    c.SwaggerDoc("v1", new OpenApiInfo() { Title = "Mango.services.ProductApi", Description = "Mango Store", Version = "V1"});
     c.EnableAnnotations();
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
     {
