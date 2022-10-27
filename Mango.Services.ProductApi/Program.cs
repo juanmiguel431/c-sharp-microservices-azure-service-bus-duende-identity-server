@@ -47,7 +47,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 
 builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
 {
-    options.Authority = builder.Configuration["IdentityServerUrl"];
+    options.Authority = builder.Configuration["ServiceUrls:IdentityApi"];
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateAudience = false,
