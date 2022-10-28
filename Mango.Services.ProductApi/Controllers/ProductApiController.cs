@@ -17,7 +17,7 @@ public class ProductApiController : Controller
         _response = new ResponseDto();
     }
 
-    [Authorize, HttpGet]
+    [HttpGet]
     public async Task<ResponseDto> Get()
     {
         try
@@ -33,7 +33,7 @@ public class ProductApiController : Controller
         return _response;
     }
 
-    [Authorize, HttpGet, Route("{id}")]
+    [HttpGet, Route("{id}")]
     public async Task<ResponseDto> Get(int id)
     {
         try
