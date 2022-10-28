@@ -1,5 +1,6 @@
 ﻿using Mango.Web.Models;
 using Mango.Web.Services.IServices;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -8,6 +9,7 @@ namespace Mango.Web.Controllers;
 public class ProductController : Controller
 {
     private readonly IProductService _productService;
+    private const string AccessToken = "access_token";
 
     public ProductController(IProductService productService)
     {
@@ -17,7 +19,8 @@ public class ProductController : Controller
     public async Task<IActionResult> ProductIndex()
     {
         List<ProductDto> list;
-        var response = await _productService.GetAllProductsAsync<ResponseDto>();
+        var token = await GetToken();
+        var response = await _productService.GetAllProductsAsync<ResponseDto>(token);
         if (response != null && response.IsSuccess)
         {
             list = JsonConvert.DeserializeObject<List<ProductDto>>(Convert.ToString(response.Result));
@@ -29,7 +32,7 @@ public class ProductController : Controller
         return View(list);
     }
     
-    public async Task<IActionResult> ProductCreate()
+    public IActionResult ProductCreate()
     {
         return View();
     }
@@ -39,7 +42,8 @@ public class ProductController : Controller
     {
         if (!ModelState.IsValid) return View(productDto);
 
-        var response = await _productService.CreateProductAsync<ResponseDto>(productDto);
+        var token = await GetToken();
+        var response = await _productService.CreateProductAsync<ResponseDto>(productDto, token);
         if (response != null && response.IsSuccess)
         {
             return RedirectToAction(nameof(ProductIndex));
@@ -50,7 +54,8 @@ public class ProductController : Controller
     
     public async Task<IActionResult> ProductEdit(int productId)
     {
-        var response = await _productService.GetProductByIdAsync<ResponseDto>(productId);
+        var token = await GetToken();
+        var response = await _productService.GetProductByIdAsync<ResponseDto>(productId, token);
         if (response != null && response.IsSuccess && response.Result != null)
         {
             var serializedObject = Convert.ToString(response.Result);
@@ -60,13 +65,19 @@ public class ProductController : Controller
 
         return NotFound();
     }
-    
+
+    private async Task<string?> GetToken()
+    {
+        return await HttpContext.GetTokenAsync(AccessToken);
+    }
+
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> ProductEdit(ProductDto productDto)
     {
         if (!ModelState.IsValid) return View(productDto);
 
-        var response = await _productService.UpdateProductAsync<ResponseDto>(productDto);
+        var token = await GetToken();
+        var response = await _productService.UpdateProductAsync<ResponseDto>(productDto, token);
         if (response != null && response.IsSuccess)
         {
             return RedirectToAction(nameof(ProductIndex));
@@ -77,7 +88,8 @@ public class ProductController : Controller
     
     public async Task<IActionResult> ProductDelete(int productId)
     {
-        var response = await _productService.GetProductByIdAsync<ResponseDto>(productId);
+        var token = await GetToken();
+        var response = await _productService.GetProductByIdAsync<ResponseDto>(productId, token);
         if (response != null && response.IsSuccess && response.Result != null)
         {
             var serializedObject = Convert.ToString(response.Result);
@@ -91,7 +103,8 @@ public class ProductController : Controller
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> ProductDelete(ProductDto productDto)
     {
-        var response = await _productService.DeleteProductAsync<ResponseDto>(productDto.ProductId);
+        var token = await GetToken();
+        var response = await _productService.DeleteProductAsync<ResponseDto>(productDto.ProductId, token);
         if (response != null && response.IsSuccess)
         {
             return RedirectToAction(nameof(ProductIndex));
