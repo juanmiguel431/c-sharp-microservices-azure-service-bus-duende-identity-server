@@ -44,19 +44,19 @@ public class BaseService : IBaseService
 
             switch (apiRequest.ApiType)
             {
-                case SD.ApiType.Get:
+                case Sd.ApiType.Get:
                     message.Method = HttpMethod.Get;
                     break;
-                case SD.ApiType.Post:
+                case Sd.ApiType.Post:
                     message.Method = HttpMethod.Post;
                     break;
-                case SD.ApiType.Put:
+                case Sd.ApiType.Put:
                     message.Method = HttpMethod.Put;
                     break;
-                case SD.ApiType.Patch:
+                case Sd.ApiType.Patch:
                     message.Method = HttpMethod.Patch;
                     break;
-                case SD.ApiType.Delete:
+                case Sd.ApiType.Delete:
                     message.Method = HttpMethod.Delete;
                     break;
                 default:

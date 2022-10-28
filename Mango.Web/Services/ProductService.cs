@@ -12,9 +12,9 @@ public class ProductService : BaseService, IProductService
     public async Task<T?> CreateProductAsync<T>(ProductDto productDto, string token)
     {
         return await SendAsync<T>(new ApiRequest() {
-            ApiType = SD.ApiType.Post,
+            ApiType = Sd.ApiType.Post,
             Data = productDto,
-            Url = $"{SD.ProductApiBase}/api/products",
+            Url = $"{Sd.ProductApiBase}/api/products",
             AccessToken = token
         });
     }
@@ -23,8 +23,8 @@ public class ProductService : BaseService, IProductService
     {
         return await SendAsync<T>(new ApiRequest()
         {
-            ApiType = SD.ApiType.Delete,
-            Url = $"{SD.ProductApiBase}/api/products/{id}",
+            ApiType = Sd.ApiType.Delete,
+            Url = $"{Sd.ProductApiBase}/api/products/{id}",
             AccessToken = token
         });
     }
@@ -33,8 +33,8 @@ public class ProductService : BaseService, IProductService
     {
         return await SendAsync<T>(new ApiRequest()
         {
-            ApiType = SD.ApiType.Get,
-            Url = $"{SD.ProductApiBase}/api/products/{id}",
+            ApiType = Sd.ApiType.Get,
+            Url = $"{Sd.ProductApiBase}/api/products/{id}",
             AccessToken = token
         });
     }
@@ -43,8 +43,8 @@ public class ProductService : BaseService, IProductService
     {
         return await SendAsync<T>(new ApiRequest()
         {
-            ApiType = SD.ApiType.Get,
-            Url = $"{SD.ProductApiBase}/api/products",
+            ApiType = Sd.ApiType.Get,
+            Url = $"{Sd.ProductApiBase}/api/products",
             AccessToken = token
         });
     }
@@ -53,9 +53,9 @@ public class ProductService : BaseService, IProductService
     {
         return await SendAsync<T>(new ApiRequest()
         {
-            ApiType = SD.ApiType.Put,
+            ApiType = Sd.ApiType.Put,
             Data = productDto,
-            Url = $"{SD.ProductApiBase}/api/products",
+            Url = $"{Sd.ProductApiBase}/api/products",
             AccessToken = token
         });
     }
