@@ -1,17 +1,26 @@
 using Mango.Web;
 using Mango.Web.Services;
 using Mango.Web.Services.IServices;
+using Microsoft.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddHttpClient<IProductService, ProductService>();
-builder.Services.AddHttpClient<ICartService, CartService>();
+
 Sd.ProductApiBase = builder.Configuration["ServiceUrls:ProductApi"];
 Sd.ShoppingCartApiBase = builder.Configuration["ServiceUrls:ShoppingCartApi"];
 
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddHttpClient<IProductService, ProductService>("ProductApi", httpClient  =>
+{
+    httpClient.BaseAddress = new Uri(Sd.ProductApiBase);
+    httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+});
+
+builder.Services.AddHttpClient<ICartService, CartService>("CartApi", httpClient  =>
+{
+    httpClient.BaseAddress = new Uri(Sd.ShoppingCartApiBase);
+    httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+});
 
 builder.Services.AddControllersWithViews();
 
@@ -32,6 +41,9 @@ builder.Services.AddAuthentication(option =>
         options.TokenValidationParameters.RoleClaimType = "role";
         options.Scope.Add("mango");
         options.SaveTokens = true;
+        
+        options.ClaimActions.MapJsonKey("role", "role", "role");
+        options.ClaimActions.MapJsonKey("sub", "sub", "sub");
     });
 
 var app = builder.Build();

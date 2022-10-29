@@ -102,6 +102,7 @@ public class ProductController : Controller
         return NotFound();
     }
     
+    [Authorize(Roles = Sd.Admin)]
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> ProductDelete(ProductDto productDto)
     {

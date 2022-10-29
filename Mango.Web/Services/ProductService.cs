@@ -5,7 +5,7 @@ namespace Mango.Web.Services;
 
 public class ProductService : BaseService, IProductService
 {
-    public ProductService(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
+    public ProductService(HttpClient httpClient) : base(httpClient)
     {
     }
 
@@ -14,7 +14,7 @@ public class ProductService : BaseService, IProductService
         return await SendAsync<T>(new ApiRequest() {
             ApiType = Sd.ApiType.Post,
             Data = productDto,
-            Url = $"{Sd.ProductApiBase}/api/products",
+            Url = $"/api/products",
             AccessToken = token
         });
     }
@@ -24,7 +24,7 @@ public class ProductService : BaseService, IProductService
         return await SendAsync<T>(new ApiRequest()
         {
             ApiType = Sd.ApiType.Delete,
-            Url = $"{Sd.ProductApiBase}/api/products/{id}",
+            Url = $"/api/products/{id}",
             AccessToken = token
         });
     }
@@ -34,7 +34,7 @@ public class ProductService : BaseService, IProductService
         return await SendAsync<T>(new ApiRequest()
         {
             ApiType = Sd.ApiType.Get,
-            Url = $"{Sd.ProductApiBase}/api/products/{id}",
+            Url = $"/api/products/{id}",
             AccessToken = token
         });
     }
@@ -44,7 +44,7 @@ public class ProductService : BaseService, IProductService
         return await SendAsync<T>(new ApiRequest()
         {
             ApiType = Sd.ApiType.Get,
-            Url = $"{Sd.ProductApiBase}/api/products",
+            Url = $"/api/products",
             AccessToken = token
         });
     }
@@ -55,7 +55,7 @@ public class ProductService : BaseService, IProductService
         {
             ApiType = Sd.ApiType.Put,
             Data = productDto,
-            Url = $"{Sd.ProductApiBase}/api/products",
+            Url = $"/api/products",
             AccessToken = token
         });
     }

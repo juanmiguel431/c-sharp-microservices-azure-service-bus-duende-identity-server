@@ -5,7 +5,7 @@ namespace Mango.Web.Services;
 
 public class CartService : BaseService, ICartService
 {
-    public CartService(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
+    public CartService(HttpClient httpClient) : base(httpClient)
     {
     }
 
@@ -14,7 +14,7 @@ public class CartService : BaseService, ICartService
         return await SendAsync<T>(new ApiRequest()
         {
             ApiType = Sd.ApiType.Get,
-            Url = $"{Sd.ShoppingCartApiBase}/api/cart/GetCart/{userId}",
+            Url = $"/api/cart/GetCart/{userId}",
             AccessToken = token
         });
     }
@@ -24,7 +24,7 @@ public class CartService : BaseService, ICartService
         return await SendAsync<T>(new ApiRequest() {
             ApiType = Sd.ApiType.Post,
             Data = cartDto,
-            Url = $"{Sd.ShoppingCartApiBase}/api/cart/AddCart",
+            Url = $"/api/cart/AddCart",
             AccessToken = token
         });
     }
@@ -34,7 +34,7 @@ public class CartService : BaseService, ICartService
         return await SendAsync<T>(new ApiRequest() {
             ApiType = Sd.ApiType.Put,
             Data = cartDto,
-            Url = $"{Sd.ShoppingCartApiBase}/api/cart/UpdateCart",
+            Url = $"/api/cart/UpdateCart",
             AccessToken = token
         });
     }
@@ -43,7 +43,7 @@ public class CartService : BaseService, ICartService
     {
         return await SendAsync<T>(new ApiRequest() {
             ApiType = Sd.ApiType.Delete,
-            Url = $"{Sd.ShoppingCartApiBase}/api/cart/RemoveCart",
+            Url = $"/api/cart/RemoveCart",
             AccessToken = token
         });
     }

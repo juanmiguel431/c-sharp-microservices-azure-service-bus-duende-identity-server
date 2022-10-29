@@ -9,27 +9,24 @@ namespace Mango.Web.Services;
 public class BaseService : IBaseService
 {
     public ResponseDto ResponseDto { get; set; }
-    public IHttpClientFactory HttpClientFactory { get; set; }
+    private HttpClient HttpClient { get; }
 
-    public BaseService(IHttpClientFactory httpClientFactory)
+    protected BaseService(HttpClient httpClient)
     {
-        this.ResponseDto = new ResponseDto();
-        HttpClientFactory = httpClientFactory;
+        ResponseDto = new ResponseDto();
+        HttpClient = httpClient;
     }
-
 
     public async Task<T?> SendAsync<T>(ApiRequest apiRequest)
     {
         try
         {
-            var client = HttpClientFactory.CreateClient("MangoApi");
-
             var message = new HttpRequestMessage();
-            message.Headers.Add("Accept", "application/json");
+            // message.Headers.Add("Accept", "application/json");
 
-            message.RequestUri = new Uri(apiRequest.Url);
+            message.RequestUri = new Uri(apiRequest.Url, UriKind.Relative);
 
-            client.DefaultRequestHeaders.Clear();
+            // HttpClient.DefaultRequestHeaders.Clear();
 
             if (apiRequest.Data != null)
             {
@@ -39,7 +36,7 @@ public class BaseService : IBaseService
 
             if (!string.IsNullOrEmpty(apiRequest.AccessToken))
             {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiRequest.AccessToken);
+                HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiRequest.AccessToken);
             }
 
             switch (apiRequest.ApiType)
@@ -64,7 +61,7 @@ public class BaseService : IBaseService
                     break;
             }
 
-            var apiResponse = await client.SendAsync(message);
+            var apiResponse = await HttpClient.SendAsync(message);
 
             var apiContent = await apiResponse.Content.ReadAsStringAsync();
             var apiResponseDto = JsonConvert.DeserializeObject<T>(apiContent);
