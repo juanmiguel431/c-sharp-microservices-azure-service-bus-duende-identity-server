@@ -14,7 +14,7 @@ namespace Mango.Services.ProductApi.Repositories
         public ProductRepository(ApplicationDbContext db, IMapper mapper)
         {
             _db = db;
-            this._mapper = mapper;
+            _mapper = mapper;
         }
 
         public async Task<ProductDto> CreateUpdateProduct(ProductDto productDto)
