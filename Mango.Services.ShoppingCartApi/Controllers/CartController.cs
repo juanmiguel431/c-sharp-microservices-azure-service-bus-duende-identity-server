@@ -51,7 +51,7 @@ public class CartController: ControllerBase
         return _response;
     }
     
-    [HttpPut, Route("AddCart")]
+    [HttpPut, Route("UpdateCart")]
     public async Task<ResponseDto> UpdateCart(CartDto cartDto)
     {
         try
