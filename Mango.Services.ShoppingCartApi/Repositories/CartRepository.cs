@@ -45,7 +45,7 @@ public class CartRepository : ICartRepository
 
         if (prodInDb == null)
         {
-            _db.Products.Add(cartDetailDto.Product);
+            _db.Products.Add(cartDetail.Product);
             await _db.SaveChangesAsync();
         }
 
