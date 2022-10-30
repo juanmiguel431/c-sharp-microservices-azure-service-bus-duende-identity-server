@@ -69,10 +69,7 @@ namespace Mango.Services.ShoppingCartApi.Migrations
             modelBuilder.Entity("Mango.Services.ShoppingCartApi.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
 
                     b.Property<string>("CategoryName")
                         .HasColumnType("nvarchar(max)");

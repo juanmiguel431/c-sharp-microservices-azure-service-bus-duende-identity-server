@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Mango.Services.ShoppingCartApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221029151332_AddProductAndCartModels")]
+    [Migration("20221030012247_AddProductAndCartModels")]
     partial class AddProductAndCartModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,10 +71,7 @@ namespace Mango.Services.ShoppingCartApi.Migrations
             modelBuilder.Entity("Mango.Services.ShoppingCartApi.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
 
                     b.Property<string>("CategoryName")
                         .HasColumnType("nvarchar(max)");
