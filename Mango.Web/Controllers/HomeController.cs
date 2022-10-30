@@ -12,12 +12,15 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly IProductService _productService;
+    private readonly ICartService _cartService;
+
     private const string AccessToken = "access_token";
 
-    public HomeController(ILogger<HomeController> logger, IProductService productService)
+    public HomeController(ILogger<HomeController> logger, IProductService productService, ICartService cartService)
     {
         _logger = logger;
         _productService = productService;
+        _cartService = cartService;
     }
 
     public async Task<IActionResult> Index()
@@ -77,10 +80,55 @@ public class HomeController : Controller
             
         return View(model);
     }
+    
+    [Authorize]
+    [HttpPost]
+    [ActionName("Details")]
+    public async Task<IActionResult> DetailsPost(ProductDto productDto)
+    {
+        var cartDto = new CartDto
+        {
+            CartHeader = new CartHeaderDto
+            {
+                UserId = GetUserId()
+            }
+        };
+
+        var cartDetailDto = new CartDetailDto
+        {
+            Count = productDto.Count,
+            ProductId = productDto.ProductId
+        };
+
+        var token = await GetToken();
+        
+        var resp = await _productService.GetProductByIdAsync<ResponseDto>(productDto.ProductId, token);
+
+        if (resp != null && resp.IsSuccess)
+        {
+            cartDetailDto.Product = JsonConvert.DeserializeObject<ProductDto>(Convert.ToString(resp.Result));
+        }
+
+        cartDto.CartDetails = new List<CartDetailDto>() { cartDetailDto };
+
+        var addToCartResponse = await _cartService.AddToCartAsync<ResponseDto>(cartDto, token);
+        
+        if (addToCartResponse != null && addToCartResponse.IsSuccess)
+        {
+            return RedirectToAction(nameof(Index));
+        }
+        
+        return View(productDto);
+    }
         
     private async Task<string?> GetToken()
     {
         return await HttpContext.GetTokenAsync(AccessToken);
     }
 
+    private string GetUserId()
+    {
+        var claim = User.Claims.Single(u => u.Type == "sub");
+        return claim.Value;
+    }
 }
