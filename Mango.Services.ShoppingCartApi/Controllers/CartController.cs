@@ -68,12 +68,12 @@ public class CartController: ControllerBase
         return _response;
     }
     
-    [HttpDelete, Route("RemoveCart")]
-    public async Task<ResponseDto> UpdateCart(int cartId)
+    [HttpDelete, Route("RemoveCart/{cartDetailId}")]
+    public async Task<ResponseDto> UpdateCart(int cartDetailId)
     {
         try
         {
-            var isSuccess = await _cartRepository.RemoveFromCart(cartId);
+            var isSuccess = await _cartRepository.RemoveFromCart(cartDetailId);
             _response.Result = isSuccess;
         }
         catch (Exception e)

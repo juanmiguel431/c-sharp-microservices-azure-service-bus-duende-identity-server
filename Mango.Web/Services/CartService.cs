@@ -39,11 +39,11 @@ public class CartService : BaseService, ICartService
         });
     }
 
-    public async Task<T?> RemoveFromCartAsync<T>(int cartId, string token)
+    public async Task<T?> RemoveFromCartAsync<T>(int cartDetailId, string token)
     {
         return await SendAsync<T>(new ApiRequest() {
             ApiType = Sd.ApiType.Delete,
-            Url = $"/api/cart/RemoveCart",
+            Url = $"/api/cart/RemoveCart/{cartDetailId}",
             AccessToken = token
         });
     }

@@ -20,7 +20,7 @@ public class CartController : Controller
     }
 
     [Authorize]
-    public async Task<IActionResult> CardIndex()
+    public async Task<IActionResult> CartIndex()
     {
         var cartDto = await LoadCartDto();
         return View(cartDto);
@@ -63,5 +63,12 @@ public class CartController : Controller
     private async Task<string?> GetToken()
     {
         return await HttpContext.GetTokenAsync(AccessToken);
+    }
+
+    public async Task<IActionResult> Remove(int cartDetailId)
+    {
+        var token = await GetToken();
+        var response = await _cartService.RemoveFromCartAsync<ResponseDto>(cartDetailId, token);
+        return RedirectToAction(nameof(CartIndex));
     }
 }
