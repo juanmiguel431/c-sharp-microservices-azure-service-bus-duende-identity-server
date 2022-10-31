@@ -47,4 +47,24 @@ public class CartService : BaseService, ICartService
             AccessToken = token
         });
     }
+
+    public async Task<T?> ApplyCoupon<T>(CartDto cartDto, string token)
+    {
+        return await SendAsync<T>(new ApiRequest {
+            ApiType = Sd.ApiType.Post,
+            Data = cartDto,
+            Url = $"/api/cart/ApplyCoupon",
+            AccessToken = token
+        });
+    }
+
+    public async Task<T?> RemoveCoupon<T>(string userId, string token)
+    {
+        return await SendAsync<T>(new ApiRequest {
+            ApiType = Sd.ApiType.Post,
+            Data = userId,
+            Url = $"/api/cart/RemoveCoupon",
+            AccessToken = token
+        });
+    }
 }

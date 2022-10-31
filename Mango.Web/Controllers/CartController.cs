@@ -71,4 +71,20 @@ public class CartController : Controller
         var response = await _cartService.RemoveFromCartAsync<ResponseDto>(cartDetailId, token);
         return RedirectToAction(nameof(CartIndex));
     }
+
+    [HttpPost]
+    public async Task<IActionResult> ApplyCoupon(CartDto cartDto)
+    {
+        var token = await GetToken();
+        var response = await _cartService.ApplyCoupon<ResponseDto>(cartDto, token);
+        return RedirectToAction(nameof(CartIndex));
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> RemoveCoupon(CartDto cartDto)
+    {
+        var token = await GetToken();
+        var response = await _cartService.RemoveCoupon<ResponseDto>(cartDto.CartHeader.UserId, token);
+        return RedirectToAction(nameof(CartIndex));
+    }
 }
