@@ -103,7 +103,7 @@ public class CartController: ControllerBase
     }
     
     [HttpPost, Route("RemoveCoupon")]
-    public async Task<ResponseDto> RemoveCoupon(string userId)
+    public async Task<ResponseDto> RemoveCoupon([FromBody] string userId)
     {
         try
         {
