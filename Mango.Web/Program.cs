@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 Sd.ProductApiBase = builder.Configuration["ServiceUrls:ProductApi"];
 Sd.ShoppingCartApiBase = builder.Configuration["ServiceUrls:ShoppingCartApi"];
+Sd.CouponApiBase = builder.Configuration["ServiceUrls:CouponApi"];
 
 builder.Services.AddHttpClient<IProductService, ProductService>("ProductApi", httpClient  =>
 {
@@ -21,6 +22,13 @@ builder.Services.AddHttpClient<ICartService, CartService>("CartApi", httpClient 
     httpClient.BaseAddress = new Uri(Sd.ShoppingCartApiBase);
     httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
 });
+
+builder.Services.AddHttpClient<ICouponService, CouponService>("CouponApi", httpClient  =>
+{
+    httpClient.BaseAddress = new Uri(Sd.CouponApiBase);
+    httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+});
+
 
 builder.Services.AddControllersWithViews();
 
