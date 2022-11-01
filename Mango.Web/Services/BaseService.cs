@@ -3,6 +3,7 @@ using Mango.Web.Models;
 using Mango.Web.Services.IServices;
 using Newtonsoft.Json;
 using System.Text;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace Mango.Web.Services;
 
@@ -22,11 +23,11 @@ public class BaseService : IBaseService
         try
         {
             var message = new HttpRequestMessage();
-            // message.Headers.Add("Accept", "application/json");
 
-            message.RequestUri = new Uri(apiRequest.Url, UriKind.Relative);
+            var uri = apiRequest.QueryString != null 
+                ? QueryHelpers.AddQueryString(apiRequest.Url, apiRequest.QueryString) : apiRequest.Url;
 
-            // HttpClient.DefaultRequestHeaders.Clear();
+            message.RequestUri = new Uri(uri, UriKind.Relative);
 
             if (apiRequest.Data != null)
             {
