@@ -101,4 +101,11 @@ public class CartController : Controller
         var response = await _cartService.RemoveCoupon<ResponseDto>(cartDto.CartHeader.UserId, token);
         return RedirectToAction(nameof(CartIndex));
     }
+
+    [HttpGet]
+    public async Task<IActionResult> CheckOut()
+    {
+        var cartDto = new CartDto();
+        return View(cartDto);
+    }
 }
