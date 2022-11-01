@@ -105,7 +105,7 @@ public class CartController : Controller
     [HttpGet]
     public async Task<IActionResult> CheckOut()
     {
-        var cartDto = new CartDto();
+        var cartDto = await LoadCartDto();
         return View(cartDto);
     }
 }

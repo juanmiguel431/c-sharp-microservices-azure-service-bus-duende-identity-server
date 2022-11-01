@@ -39,7 +39,19 @@
                         </div>
                         <div class="col-12">
                             <label class="col-form-label">PickUp Time</label>
-                            <input asp-for="CartHeader.PickupDateTime" class="form-control form_datetime" type="text">
+                            <div
+                                class="input-group log-event"
+                                id="datetimepicker1"
+                                data-td-target-input="nearest"
+                                data-td-target-toggle="nearest">
+                                <input id="datetimepicker1Input" asp-for="CartHeader.PickupDateTime" class="form-control form_datetime" type="text" data-td-target="#datetimepicker1">
+                                <span
+                                    class="input-group-text"
+                                    data-td-target="#datetimepicker1"
+                                    data-td-toggle="datetimepicker">
+                                    <i class="fas fa-calendar"></i>
+                                </span>
+                            </div>
                         </div>
                         <div class="col-12">
                             <label class="col-form-label">Card Number :</label>
@@ -118,4 +130,20 @@
             </div>
         </div>
     </form>
+}
+
+@section styles
+{
+    <link href="@Url.Content("~/lib/tempus-dominus/css/tempus-dominus.min.css")" rel="stylesheet" type="text/css"/>
+}
+
+@section Scripts
+{
+    <script src="~/lib/popper.js/umd/popper.min.js"></script>
+    <script src="~/lib/tempus-dominus/js/tempus-dominus.min.js"></script>
+    <script>
+    $(document).ready(function() {
+      const datetimepicker1 = new tempusDominus.TempusDominus(document.getElementById('datetimepicker1'));
+    });
+    </script>
 }

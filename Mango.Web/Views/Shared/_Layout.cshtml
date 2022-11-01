@@ -9,6 +9,7 @@
     <script src="https://kit.fontawesome.com/a2b5609c8c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Mango.Web.styles.css" asp-append-version="true" />
+    @await RenderSectionAsync("styles", required: false)
 </head>
 <body>
     <partial name="_Header" />
