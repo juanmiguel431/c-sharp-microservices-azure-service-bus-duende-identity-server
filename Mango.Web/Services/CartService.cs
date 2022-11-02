@@ -67,4 +67,14 @@ public class CartService : BaseService, ICartService
             AccessToken = token
         });
     }
+
+    public async Task<T?> Checkout<T>(CartHeaderDto cartHeaderDto, string token)
+    {
+        return await SendAsync<T>(new ApiRequest {
+            ApiType = Sd.ApiType.Post,
+            Data = cartHeaderDto,
+            Url = $"/api/cart/Checkout",
+            AccessToken = token
+        });
+    }
 }
