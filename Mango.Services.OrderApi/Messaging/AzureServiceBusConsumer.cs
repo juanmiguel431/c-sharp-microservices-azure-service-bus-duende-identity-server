@@ -7,15 +7,48 @@ using Newtonsoft.Json;
 
 namespace Mango.Services.OrderApi.Messaging;
 
-public class AzureServiceBusConsumer
+public class AzureServiceBusConsumer : IAzureServiceBusConsumer
 {
     private readonly OrderRepository _orderRepository;
+    private readonly string _serviceBusConnectionString;
+    private readonly string _checkoutMessageTopic;
+    private readonly string _mangoOrderSubscription;
 
-    public AzureServiceBusConsumer(OrderRepository orderRepository)
+    private readonly ServiceBusProcessor _checkOutProcessor;
+        
+    public AzureServiceBusConsumer(OrderRepository orderRepository, IConfiguration configuration)
     {
         _orderRepository = orderRepository;
+
+        _serviceBusConnectionString = configuration.GetValue<string>("ServiceBusConnectionString");
+        _checkoutMessageTopic = configuration.GetValue<string>("CheckoutMessageTopic");
+        _mangoOrderSubscription = configuration.GetValue<string>("MangoOrderSubscription");
+
+        var client = new ServiceBusClient(_serviceBusConnectionString);
+        _checkOutProcessor = client.CreateProcessor(_checkoutMessageTopic, _mangoOrderSubscription);
+    }
+
+    public async Task Start()
+    {
+        _checkOutProcessor.ProcessMessageAsync += OnCheckoutMessageReceived;
+        _checkOutProcessor.ProcessErrorAsync += ErrorHandler;
+        await _checkOutProcessor.StartProcessingAsync();
     }
     
+    public async Task Stop()
+    {
+        _checkOutProcessor.ProcessMessageAsync -= OnCheckoutMessageReceived;
+        _checkOutProcessor.ProcessErrorAsync -= ErrorHandler;
+        await _checkOutProcessor.StopProcessingAsync();
+        await _checkOutProcessor.DisposeAsync();
+    }
+
+    private async Task ErrorHandler(ProcessErrorEventArgs arg)
+    {
+        Console.WriteLine(arg.Exception.ToString());
+        await Task.CompletedTask;
+    }
+
     private async Task OnCheckoutMessageReceived(ProcessMessageEventArgs args)
     {
         var message = args.Message;
