@@ -9,20 +9,20 @@ namespace Mango.Services.OrderApi.Messaging;
 
 public class AzureServiceBusConsumer : IAzureServiceBusConsumer
 {
-    private readonly OrderRepository _orderRepository;
+    private readonly IOrderRepository _orderRepository;
     private readonly string _serviceBusConnectionString;
     private readonly string _checkoutMessageTopic;
     private readonly string _mangoOrderSubscription;
 
     private readonly ServiceBusProcessor _checkOutProcessor;
         
-    public AzureServiceBusConsumer(OrderRepository orderRepository, IConfiguration configuration)
+    public AzureServiceBusConsumer(IOrderRepository orderRepository, IConfiguration configuration)
     {
         _orderRepository = orderRepository;
 
-        _serviceBusConnectionString = configuration.GetValue<string>("ServiceBusConnectionString");
-        _checkoutMessageTopic = configuration.GetValue<string>("CheckoutMessageTopic");
-        _mangoOrderSubscription = configuration.GetValue<string>("MangoOrderSubscription");
+        _serviceBusConnectionString = configuration.GetValue<string>("AzureServiceBus:ConnectionString");
+        _checkoutMessageTopic = configuration.GetValue<string>("AzureServiceBus:CheckoutMessageTopic");
+        _mangoOrderSubscription = configuration.GetValue<string>("AzureServiceBus:MangoOrderSubscription");
 
         var client = new ServiceBusClient(_serviceBusConnectionString);
         _checkOutProcessor = client.CreateProcessor(_checkoutMessageTopic, _mangoOrderSubscription);
@@ -37,9 +37,9 @@ public class AzureServiceBusConsumer : IAzureServiceBusConsumer
     
     public async Task Stop()
     {
+        await _checkOutProcessor.StopProcessingAsync();
         _checkOutProcessor.ProcessMessageAsync -= OnCheckoutMessageReceived;
         _checkOutProcessor.ProcessErrorAsync -= ErrorHandler;
-        await _checkOutProcessor.StopProcessingAsync();
         await _checkOutProcessor.DisposeAsync();
     }
 
