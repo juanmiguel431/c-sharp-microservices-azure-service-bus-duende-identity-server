@@ -5,6 +5,8 @@
     Layout = "_Layout";
 }
 
+@Html.ValidationSummary("", new { @class = "text-danger" })
+
 @if (Model != null && Model.CartDetails.Any())
 {
     <form method="post">

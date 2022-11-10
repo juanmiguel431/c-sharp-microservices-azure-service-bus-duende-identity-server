@@ -114,7 +114,15 @@ public class CartController : Controller
         try
         {
             var token = await GetToken();
-            var response = _cartService.Checkout<ResponseDto>(cartDto.CartHeader, token);
+            var response = await _cartService.Checkout<ResponseDto>(cartDto.CartHeader, token);
+
+            if (!response.IsSuccess)
+            {
+                ModelState.AddModelError("", response.DisplayMessage);
+                cartDto.CartDetails ??= new List<CartDetailDto>();
+                return View(cartDto);
+            }
+            
             return RedirectToAction(nameof(Confirmation));
         }
         catch (Exception e)
