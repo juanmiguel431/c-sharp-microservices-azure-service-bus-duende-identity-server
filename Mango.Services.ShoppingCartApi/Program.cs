@@ -69,6 +69,11 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddSingleton<IMessageBus, AzureServiceBusMessageBus>();
 
+builder.Services.AddHttpClient<ICouponRepository, CouponRepository>("CouponApi", client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration.GetValue<string>("ServiceUrls:CouponApi"));
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
