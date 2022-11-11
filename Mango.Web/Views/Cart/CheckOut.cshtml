@@ -89,19 +89,46 @@
                                 </div>
                             </div>
                             <hr/>
-                            @foreach (var item in Model.CartDetails)
+                            @for(var i = 0; i < Model.CartDetails.Count(); i++)
                             {
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.CartDetailId)}"  )" value="@Model.CartDetails.ElementAt(i).CartDetailId" type="hidden"/>
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.CartHeaderId)}"  )" value="@Model.CartDetails.ElementAt(i).CartHeaderId" type="hidden"/>
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.ProductId)}"  )" value="@Model.CartDetails.ElementAt(i).ProductId" type="hidden"/>
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.Count)}"  )" value="@Model.CartDetails.ElementAt(i).Count" type="hidden"/>
+
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.CartHeader)}.{nameof(CartHeaderDto.CartHeaderId)}"  )" value="@Model.CartDetails.ElementAt(i).CartHeader.CartHeaderId" type="hidden"/>
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.CartHeader)}.{nameof(CartHeaderDto.UserId)}"  )" value="@Model.CartDetails.ElementAt(i).CartHeader.UserId" type="hidden"/>
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.CartHeader)}.{nameof(CartHeaderDto.CouponCode)}"  )" value="@Model.CartDetails.ElementAt(i).CartHeader.CouponCode" type="hidden"/>
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.CartHeader)}.{nameof(CartHeaderDto.OrderTotal)}"  )" value="@Model.CartDetails.ElementAt(i).CartHeader.OrderTotal" type="hidden"/>
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.CartHeader)}.{nameof(CartHeaderDto.DiscountTotal)}"  )" value="@Model.CartDetails.ElementAt(i).CartHeader.DiscountTotal" type="hidden"/>
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.CartHeader)}.{nameof(CartHeaderDto.FirstName)}"  )" value="@Model.CartDetails.ElementAt(i).CartHeader.FirstName" type="hidden"/>
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.CartHeader)}.{nameof(CartHeaderDto.LastName)}"  )" value="@Model.CartDetails.ElementAt(i).CartHeader.LastName" type="hidden"/>
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.CartHeader)}.{nameof(CartHeaderDto.PickupDateTime)}"  )" value="@Model.CartDetails.ElementAt(i).CartHeader.PickupDateTime" type="hidden"/>
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.CartHeader)}.{nameof(CartHeaderDto.Phone)}"  )" value="@Model.CartDetails.ElementAt(i).CartHeader.Phone" type="hidden"/>
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.CartHeader)}.{nameof(CartHeaderDto.Email)}"  )" value="@Model.CartDetails.ElementAt(i).CartHeader.Email" type="hidden"/>
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.CartHeader)}.{nameof(CartHeaderDto.CardNumber)}"  )" value="@Model.CartDetails.ElementAt(i).CartHeader.CardNumber" type="hidden"/>
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.CartHeader)}.{nameof(CartHeaderDto.CVV)}"  )" value="@Model.CartDetails.ElementAt(i).CartHeader.CVV" type="hidden"/>
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.CartHeader)}.{nameof(CartHeaderDto.ExpiryMonthYear)}"  )" value="@Model.CartDetails.ElementAt(i).CartHeader.ExpiryMonthYear" type="hidden"/>
+                                
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.Product)}.{nameof(ProductDto.ProductId)}"  )" value="@Model.CartDetails.ElementAt(i).Product.ProductId" type="hidden"/>
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.Product)}.{nameof(ProductDto.Name)}"  )" value="@Model.CartDetails.ElementAt(i).Product.Name" type="hidden"/>
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.Product)}.{nameof(ProductDto.Price)}"  )" value="@Model.CartDetails.ElementAt(i).Product.Price" type="hidden"/>
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.Product)}.{nameof(ProductDto.Description)}"  )" value="@Model.CartDetails.ElementAt(i).Product.Description" type="hidden"/>
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.Product)}.{nameof(ProductDto.CategoryName)}"  )" value="@Model.CartDetails.ElementAt(i).Product.CategoryName" type="hidden"/>
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.Product)}.{nameof(ProductDto.ImageUrl)}"  )" value="@Model.CartDetails.ElementAt(i).Product.ImageUrl" type="hidden"/>
+                                <input name="@( $"{nameof(CartDto.CartDetails)}[{i}].{nameof(CartDetailDto.Product)}.{nameof(ProductDto.Count)}"  )" value="@Model.CartDetails.ElementAt(i).Product.Count" type="hidden"/>
+
                                 <div class="row h-100">
                                     <div class="col-6">
-                                        <span style="font-size:20px">@item.Product.Name</span>
+                                        <span style="font-size:20px">@Model.CartDetails.ElementAt(i).Product.Name</span>
                                     </div>
 
                                     <div class="col-3" style="font-size:11px;">
-                                        <span style="font-size:17px;">@item.Product.Price.ToString("C")</span>
+                                        <span style="font-size:17px;">@Model.CartDetails.ElementAt(i).Product.Price.ToString("C")</span>
 
                                     </div>
                                     <div class="col-3" style="font-size:11px;">
-                                        <span style="font-size:17px;">@item.Count</span>
+                                        <span style="font-size:17px;">@Model.CartDetails.ElementAt(i).Count</span>
                                     </div>
                                 </div>
                                 <hr/>
