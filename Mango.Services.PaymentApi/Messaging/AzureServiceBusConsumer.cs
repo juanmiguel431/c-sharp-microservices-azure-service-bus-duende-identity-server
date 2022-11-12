@@ -20,13 +20,13 @@ public class AzureServiceBusConsumer : IAzureServiceBusConsumer
         _processPayment = processPayment;
 
         var serviceBusConnectionString = configuration.GetValue<string>("AzureServiceBus:ConnectionString");
-        var mangoOrderSubscription = configuration.GetValue<string>("AzureServiceBus:MangoOrderSubscription");
+        var mangoPaymentSubscription = configuration.GetValue<string>("AzureServiceBus:MangoPaymentSubscription");
         
         var orderPaymentProcessTopic = configuration.GetValue<string>("AzureServiceBus:OrderPaymentProcessTopic");
         _orderUpdatePaymentResultTopic = configuration.GetValue<string>("AzureServiceBus:OrderUpdatePaymentResultTopic");
 
         var client = new ServiceBusClient(serviceBusConnectionString);
-        _orderPaymentProcessor = client.CreateProcessor(orderPaymentProcessTopic, mangoOrderSubscription);
+        _orderPaymentProcessor = client.CreateProcessor(orderPaymentProcessTopic, mangoPaymentSubscription);
     }
 
     public async Task Start()

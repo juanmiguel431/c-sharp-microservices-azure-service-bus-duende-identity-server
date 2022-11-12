@@ -17,7 +17,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo() { Title = "Mango.services.ShoppingCartApi", Description = "Shopping Cart Api", Version = "V1"});
+    c.SwaggerDoc("v1", new OpenApiInfo() { Title = "Mango.services.OrderApi", Description = "Order Api", Version = "V1"});
     c.EnableAnnotations();
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
     {
@@ -68,7 +68,6 @@ builder.Services.AddAuthorization(options =>
 var mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-// builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
 var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
 optionBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));

@@ -15,18 +15,21 @@ builder.Services.AddHttpClient<IProductService, ProductService>("ProductApi", ht
 {
     httpClient.BaseAddress = new Uri(Sd.ProductApiBase);
     httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+    httpClient.Timeout = TimeSpan.FromHours(5); // For development
 });
 
 builder.Services.AddHttpClient<ICartService, CartService>("CartApi", httpClient  =>
 {
     httpClient.BaseAddress = new Uri(Sd.ShoppingCartApiBase);
     httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+    httpClient.Timeout = TimeSpan.FromHours(5); // For development
 });
 
 builder.Services.AddHttpClient<ICouponService, CouponService>("CouponApi", httpClient  =>
 {
     httpClient.BaseAddress = new Uri(Sd.CouponApiBase);
     httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+    httpClient.Timeout = TimeSpan.FromHours(5); // For development
 });
 
 

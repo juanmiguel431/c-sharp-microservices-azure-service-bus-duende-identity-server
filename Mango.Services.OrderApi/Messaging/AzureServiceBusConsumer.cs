@@ -39,7 +39,7 @@ public class AzureServiceBusConsumer : IAzureServiceBusConsumer
         _checkOutProcessor.ProcessErrorAsync += ErrorHandler;
         await _checkOutProcessor.StartProcessingAsync();
         
-        _orderUpdatePaymentStatusProcessor.ProcessMessageAsync += OnCheckoutMessageReceived;
+        _orderUpdatePaymentStatusProcessor.ProcessMessageAsync += OnOrderPaymentUpdateReceived;
         _orderUpdatePaymentStatusProcessor.ProcessErrorAsync += ErrorHandler;
         await _orderUpdatePaymentStatusProcessor.StartProcessingAsync();
     }
