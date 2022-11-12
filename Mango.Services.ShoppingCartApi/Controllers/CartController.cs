@@ -152,6 +152,8 @@ public class CartController: ControllerBase
             // logic to add message to process order.
             var checkoutMessageTopic = _configuration.GetValue<string>("AzureServiceBus:CheckoutMessageTopic");
             await _messageBus.PublishMessage(checkoutHeader, checkoutMessageTopic);
+
+            await _cartRepository.ClearCart(checkoutHeader.UserId);
         }
         catch (Exception e)
         {
