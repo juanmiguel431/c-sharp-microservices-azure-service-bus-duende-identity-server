@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.MessageBus", "Mango.M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Services.OrderApi", "Mango.Services.OrderApi\Mango.Services.OrderApi.csproj", "{5BDE1D37-8BBE-41DB-AF35-5D736D36A28C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payments", "Payments", "{529A7AAB-2D2C-4163-8AB8-0993B332EDF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentProcessor", "PaymentProcessor\PaymentProcessor.csproj", "{1813987D-980E-49FD-8CBE-964B7C0F37E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,10 @@ Global
 		{5BDE1D37-8BBE-41DB-AF35-5D736D36A28C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BDE1D37-8BBE-41DB-AF35-5D736D36A28C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BDE1D37-8BBE-41DB-AF35-5D736D36A28C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1813987D-980E-49FD-8CBE-964B7C0F37E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1813987D-980E-49FD-8CBE-964B7C0F37E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1813987D-980E-49FD-8CBE-964B7C0F37E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1813987D-980E-49FD-8CBE-964B7C0F37E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +77,7 @@ Global
 		{CDC4B93E-FF72-45BF-A2DE-D20D911B954B} = {FEC0196D-F0B2-4A08-AD03-9CD03F617880}
 		{6C46B64C-1808-478E-9D7F-C78D8293E7B5} = {8F2C3FC9-530E-4826-8593-CC830C254FE3}
 		{5BDE1D37-8BBE-41DB-AF35-5D736D36A28C} = {FEC0196D-F0B2-4A08-AD03-9CD03F617880}
+		{1813987D-980E-49FD-8CBE-964B7C0F37E0} = {529A7AAB-2D2C-4163-8AB8-0993B332EDF4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0787623A-A6D5-4B03-8850-6AF342BE441D}
