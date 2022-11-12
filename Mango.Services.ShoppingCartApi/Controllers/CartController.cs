@@ -12,14 +12,16 @@ public class CartController: ControllerBase
 {
     private readonly ICartRepository _cartRepository;
     private readonly ICouponRepository _couponRepository;
+    private readonly IConfiguration _configuration;
     private readonly IMessageBus _messageBus;
     private readonly ResponseDto _response;
 
-    public CartController(ICartRepository cartRepository, IMessageBus messageBus, ICouponRepository couponRepository)
+    public CartController(ICartRepository cartRepository, IMessageBus messageBus, ICouponRepository couponRepository, IConfiguration configuration)
     {
         _cartRepository = cartRepository;
         _messageBus = messageBus;
         _couponRepository = couponRepository;
+        _configuration = configuration;
         _response = new ResponseDto();
     }
 
@@ -148,7 +150,8 @@ public class CartController: ControllerBase
             checkoutHeader.CartDetails = cartDto.CartDetails;
             
             // logic to add message to process order.
-            await _messageBus.PublishMessage(checkoutHeader, "checkout-message-topic");
+            var checkoutMessageTopic = _configuration.GetValue<string>("AzureServiceBus:CheckoutMessageTopic");
+            await _messageBus.PublishMessage(checkoutHeader, checkoutMessageTopic);
         }
         catch (Exception e)
         {

@@ -74,7 +74,9 @@ var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
 optionBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddSingleton<IOrderRepository>(new OrderRepository(optionBuilder.Options));
 builder.Services.AddSingleton<IAzureServiceBusConsumer, AzureServiceBusConsumer>();
-builder.Services.AddSingleton<IMessageBus, AzureServiceBusMessageBus>();
+
+var serviceBusConnectionString = builder.Configuration["AzureServiceBus:ConnectionString"];
+builder.Services.AddSingleton<IMessageBus>(new AzureServiceBusMessageBus(serviceBusConnectionString));
 
 var app = builder.Build();
 

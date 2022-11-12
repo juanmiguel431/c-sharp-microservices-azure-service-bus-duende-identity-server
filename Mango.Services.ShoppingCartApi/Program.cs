@@ -67,7 +67,9 @@ var mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ICartRepository, CartRepository>();
-builder.Services.AddSingleton<IMessageBus, AzureServiceBusMessageBus>();
+
+var serviceBusConnectionString = builder.Configuration["AzureServiceBus:ConnectionString"];
+builder.Services.AddSingleton<IMessageBus>(new AzureServiceBusMessageBus(serviceBusConnectionString));
 
 builder.Services.AddHttpClient<ICouponRepository, CouponRepository>("CouponApi", client =>
 {

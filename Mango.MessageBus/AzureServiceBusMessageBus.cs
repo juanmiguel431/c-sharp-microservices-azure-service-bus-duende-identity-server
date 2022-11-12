@@ -6,12 +6,17 @@ namespace Mango.MessageBus;
 
 public class AzureServiceBusMessageBus : IMessageBus
 {
-    private const string ConnectionString = "Endpoint=sb://mango-restaurant-jmpc.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=4EXF4ImN0mheZnevDydMmjS70Bv5XbLwH9IQy0thuzE=";
+    private readonly string _connectionString;
+
+    public AzureServiceBusMessageBus(string connectionString)
+    {
+        _connectionString = connectionString;
+    }
     
     public async Task PublishMessage(BaseMessage message, string topicName)
     {
-        await using var client = new ServiceBusClient(ConnectionString);
-        await using var sender = client.CreateSender("checkout-message-topic");
+        await using var client = new ServiceBusClient(_connectionString);
+        await using var sender = client.CreateSender(topicName);
         var json = JsonConvert.SerializeObject(message);
         var sbMessage = new ServiceBusMessage(Encoding.UTF8.GetBytes(json))
         {
