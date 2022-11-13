@@ -22,14 +22,16 @@ public class AzureServiceBusConsumer : IAzureServiceBusConsumer
         _messageBus = messageBus;
 
         var serviceBusConnectionString = configuration.GetValue<string>("AzureServiceBus:ConnectionString");
-        var checkoutMessageTopic = configuration.GetValue<string>("AzureServiceBus:CheckoutMessageTopic");
+        // var checkoutMessageTopic = configuration.GetValue<string>("AzureServiceBus:CheckoutMessageTopic");
+        var checkoutMessageQueue = configuration.GetValue<string>("AzureServiceBus:CheckoutMessageQueue");
         var mangoOrderSubscription = configuration.GetValue<string>("AzureServiceBus:MangoOrderSubscription");
-        
+
         _orderPaymentProcessTopic = configuration.GetValue<string>("AzureServiceBus:OrderPaymentProcessTopic");
         var orderUpdatePaymentResultTopic = configuration.GetValue<string>("AzureServiceBus:OrderUpdatePaymentResultTopic");
 
         var client = new ServiceBusClient(serviceBusConnectionString);
-        _checkOutProcessor = client.CreateProcessor(checkoutMessageTopic, mangoOrderSubscription);
+        // _checkOutProcessor = client.CreateProcessor(checkoutMessageTopic, mangoOrderSubscription);
+        _checkOutProcessor = client.CreateProcessor(checkoutMessageQueue);
         _orderUpdatePaymentStatusProcessor = client.CreateProcessor(orderUpdatePaymentResultTopic, mangoOrderSubscription);
     }
 

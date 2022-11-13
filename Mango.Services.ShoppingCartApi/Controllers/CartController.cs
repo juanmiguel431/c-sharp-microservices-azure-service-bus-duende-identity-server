@@ -150,7 +150,7 @@ public class CartController: ControllerBase
             checkoutHeader.CartDetails = cartDto.CartDetails;
             
             // logic to add message to process order.
-            var checkoutMessageTopic = _configuration.GetValue<string>("AzureServiceBus:CheckoutMessageTopic");
+            var checkoutMessageTopic = _configuration.GetValue<string>("AzureServiceBus:CheckoutMessageQueue");
             await _messageBus.PublishMessage(checkoutHeader, checkoutMessageTopic);
 
             await _cartRepository.ClearCart(checkoutHeader.UserId);
