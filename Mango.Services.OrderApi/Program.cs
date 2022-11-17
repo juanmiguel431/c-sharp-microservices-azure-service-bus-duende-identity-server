@@ -71,6 +71,9 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
 optionBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+
+builder.Services.AddHostedService<RabbitMqConsumer>();
+
 builder.Services.AddSingleton<IOrderRepository>(new OrderRepository(optionBuilder.Options));
 builder.Services.AddSingleton<IAzureServiceBusConsumer, AzureServiceBusConsumer>();
 

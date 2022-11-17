@@ -157,7 +157,7 @@ public class CartController: ControllerBase
             // await _messageBus.PublishMessage(checkoutHeader, checkoutMessageTopic);
             
             //RabbitMQ implementation
-            _rabbitMqCartMessageSender.SendMessage(checkoutHeader, "CheckoutQueue");
+            _rabbitMqCartMessageSender.SendMessage(checkoutHeader, QueueName.CheckoutQueue);
 
             await _cartRepository.ClearCart(checkoutHeader.UserId);
         }
