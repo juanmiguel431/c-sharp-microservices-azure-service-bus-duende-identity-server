@@ -8,6 +8,7 @@ namespace Mango.Services.PaymentApi.RabbitMQSender;
 public class RabbitMqPaymentMessageSender : IRabbitMqPaymentMessageSender, IDisposable
 {
     private readonly IConnection _connection;
+    private const string ExchangeName = "PublishSubscribePaymentUpdate_Exchange";
 
     public RabbitMqPaymentMessageSender()
     {
@@ -24,12 +25,13 @@ public class RabbitMqPaymentMessageSender : IRabbitMqPaymentMessageSender, IDisp
     public void SendMessage(BaseMessage message, string queueName)
     {
         using var channel = _connection.CreateModel();
-        channel.QueueDeclare(queue: queueName, durable: false, exclusive: false, autoDelete: false, arguments: null);
+        // channel.QueueDeclare(queue: queueName, durable: false, exclusive: false, autoDelete: false, arguments: null);
+        channel.ExchangeDeclare(exchange: ExchangeName, type: ExchangeType.Fanout, durable: false);
 
         var json = JsonConvert.SerializeObject(message);
         var body = Encoding.UTF8.GetBytes(json);
 
-        channel.BasicPublish(exchange: string.Empty, routingKey: queueName, basicProperties: null, body: body);
+        channel.BasicPublish(exchange: ExchangeName, routingKey: string.Empty, basicProperties: null, body: body);
     }
 
     public void Dispose()
