@@ -9,13 +9,13 @@ using RabbitMQ.Client.Events;
 
 namespace Mango.Services.OrderApi.Messaging;
 
-public class RabbitMqConsumer : BackgroundService
+public class RabbitMqCheckOutConsumer : BackgroundService
 {
     private readonly IOrderRepository _orderRepository;
     private readonly IConnection _connection;
     private readonly IModel _channel;
 
-    public RabbitMqConsumer(IOrderRepository orderRepository)
+    public RabbitMqCheckOutConsumer(IOrderRepository orderRepository)
     {
         _orderRepository = orderRepository;
         
@@ -31,7 +31,6 @@ public class RabbitMqConsumer : BackgroundService
         
         _channel.QueueDeclare(queue: QueueName.CheckoutQueue, durable: false, exclusive: false, autoDelete: false, arguments: null);
     }
-
 
     protected override Task ExecuteAsync(CancellationToken stoppingToken)
     {
