@@ -3,6 +3,7 @@ using Mango.Services.OrderApi;
 using Mango.Services.OrderApi.DbContexts;
 using Mango.Services.OrderApi.Extensions;
 using Mango.Services.OrderApi.Messaging;
+using Mango.Services.OrderApi.RabbitMQSender;
 using Mango.Services.OrderApi.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -76,6 +77,7 @@ builder.Services.AddHostedService<RabbitMqCheckOutConsumer>();
 
 builder.Services.AddSingleton<IOrderRepository>(new OrderRepository(optionBuilder.Options));
 builder.Services.AddSingleton<IAzureServiceBusConsumer, AzureServiceBusConsumer>();
+builder.Services.AddSingleton<IRabbitMqOrderMessageSender, RabbitMqOrderMessageSender>();
 
 var serviceBusConnectionString = builder.Configuration["AzureServiceBus:ConnectionString"];
 builder.Services.AddSingleton<IMessageBus>(new AzureServiceBusMessageBus(serviceBusConnectionString));
