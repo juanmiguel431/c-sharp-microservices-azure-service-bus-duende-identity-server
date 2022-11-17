@@ -7,22 +7,15 @@ namespace Mango.Services.ShoppingCartApi.RabbitMQSender;
 
 public class RabbitMqCartMessageSender : IRabbitMqCartMessageSender, IDisposable
 {
-    private readonly string _hostname;
-    private readonly string _password;
-    private readonly string _username;
     private readonly IConnection _connection;
 
     public RabbitMqCartMessageSender()
     {
-        _hostname = "localhost";
-        _password = "guest";
-        _username = "guest";
-        
         var factory = new ConnectionFactory
         {
-            HostName = _hostname,
-            UserName = _username,
-            Password = _password
+            HostName = "localhost",
+            UserName = "guest",
+            Password = "guest"
         };
 
         _connection = factory.CreateConnection();
