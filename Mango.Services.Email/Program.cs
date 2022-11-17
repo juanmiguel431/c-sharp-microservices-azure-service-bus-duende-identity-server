@@ -21,6 +21,8 @@ optionBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultCon
 builder.Services.AddSingleton<IEmailRepository>(new EmailRepository(optionBuilder.Options));
 builder.Services.AddSingleton<IAzureServiceBusConsumer, AzureServiceBusConsumer>();
 
+builder.Services.AddHostedService<RabbitMqEmailConsumer>();
+
 var serviceBusConnectionString = builder.Configuration["AzureServiceBus:ConnectionString"];
 builder.Services.AddSingleton<IMessageBus>(new AzureServiceBusMessageBus(serviceBusConnectionString));
 
