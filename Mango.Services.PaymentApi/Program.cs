@@ -20,6 +20,8 @@ var serviceBusConnectionString = builder.Configuration["AzureServiceBus:Connecti
 builder.Services.AddSingleton<IMessageBus>(new AzureServiceBusMessageBus(serviceBusConnectionString));
 builder.Services.AddSingleton<IRabbitMqPaymentMessageSender, RabbitMqPaymentMessageSender>();
 
+builder.Services.AddHostedService<RabbitMqPaymentConsumer>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

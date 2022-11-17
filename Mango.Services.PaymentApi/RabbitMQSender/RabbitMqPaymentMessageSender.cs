@@ -22,7 +22,7 @@ public class RabbitMqPaymentMessageSender : IRabbitMqPaymentMessageSender, IDisp
         _connection = factory.CreateConnection();
     }
     
-    public void SendMessage(BaseMessage message, string queueName)
+    public void SendMessage(BaseMessage message)
     {
         using var channel = _connection.CreateModel();
         // channel.QueueDeclare(queue: queueName, durable: false, exclusive: false, autoDelete: false, arguments: null);

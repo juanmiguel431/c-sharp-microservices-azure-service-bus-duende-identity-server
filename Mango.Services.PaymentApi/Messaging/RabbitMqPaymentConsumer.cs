@@ -68,13 +68,15 @@ public class RabbitMqPaymentConsumer : BackgroundService
         
         try
         {
-            _rabbitMqPaymentMessageSender.SendMessage(updatePaymentResultMessage, QueueName.OrderUpdatePaymentResultTopic );
+            _rabbitMqPaymentMessageSender.SendMessage(updatePaymentResultMessage);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
             throw;
         }
+
+        await Task.CompletedTask;
     }
 
     public override void Dispose()
