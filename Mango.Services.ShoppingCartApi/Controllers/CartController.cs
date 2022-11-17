@@ -1,6 +1,7 @@
 ﻿using Mango.MessageBus;
 using Mango.Services.ShoppingCartApi.Messages;
 using Mango.Services.ShoppingCartApi.Models.Dtos;
+using Mango.Services.ShoppingCartApi.RabbitMQSender;
 using Mango.Services.ShoppingCartApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,15 +14,17 @@ public class CartController: ControllerBase
     private readonly ICartRepository _cartRepository;
     private readonly ICouponRepository _couponRepository;
     private readonly IConfiguration _configuration;
+    private readonly IRabbitMqCartMessageSender _rabbitMqCartMessageSender;
     private readonly IMessageBus _messageBus;
     private readonly ResponseDto _response;
 
-    public CartController(ICartRepository cartRepository, IMessageBus messageBus, ICouponRepository couponRepository, IConfiguration configuration)
+    public CartController(ICartRepository cartRepository, IMessageBus messageBus, ICouponRepository couponRepository, IConfiguration configuration, IRabbitMqCartMessageSender rabbitMqCartMessageSender)
     {
         _cartRepository = cartRepository;
         _messageBus = messageBus;
         _couponRepository = couponRepository;
         _configuration = configuration;
+        _rabbitMqCartMessageSender = rabbitMqCartMessageSender;
         _response = new ResponseDto();
     }
 
@@ -150,8 +153,11 @@ public class CartController: ControllerBase
             checkoutHeader.CartDetails = cartDto.CartDetails;
             
             // logic to add message to process order.
-            var checkoutMessageTopic = _configuration.GetValue<string>("AzureServiceBus:CheckoutMessageQueue");
-            await _messageBus.PublishMessage(checkoutHeader, checkoutMessageTopic);
+            // var checkoutMessageTopic = _configuration.GetValue<string>("AzureServiceBus:CheckoutMessageQueue");
+            // await _messageBus.PublishMessage(checkoutHeader, checkoutMessageTopic);
+            
+            //RabbitMQ implementation
+            _rabbitMqCartMessageSender.SendMessage(checkoutHeader, "CheckoutQueue");
 
             await _cartRepository.ClearCart(checkoutHeader.UserId);
         }
