@@ -30,6 +30,7 @@ public class RabbitMqEmailConsumer : BackgroundService
         
         _channel.ExchangeDeclare(exchange: ExchangeName, type: ExchangeType.Fanout);
         _queueName = _channel.QueueDeclare().QueueName;
+        _channel.QueueBind(_queueName, ExchangeName, string.Empty);
     }
 
     protected override Task ExecuteAsync(CancellationToken stoppingToken)
