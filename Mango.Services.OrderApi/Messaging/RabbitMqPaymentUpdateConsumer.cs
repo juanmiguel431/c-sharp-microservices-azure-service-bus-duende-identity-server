@@ -15,6 +15,10 @@ public class RabbitMqPaymentUpdateConsumer : BackgroundService
     private const string ExchangeName = "PublishSubscribePaymentUpdate_Exchange";
     private readonly string _queueName;
     
+    private const string ExchangeNameUsingDirectMethod = "DirectPaymentUpdate_Exchange";
+    private const string PaymentOrderUpdateQueueName = "PaymentOrderUpdateQueueName";
+    private const string PaymentOrderRoutingKey = "PaymentOrderRoutingKey";
+    
     public RabbitMqPaymentUpdateConsumer(IOrderRepository orderRepository)
     {
         _orderRepository = orderRepository;
@@ -29,9 +33,14 @@ public class RabbitMqPaymentUpdateConsumer : BackgroundService
         _connection = factory.CreateConnection();
         _channel = _connection.CreateModel();
         
-        _channel.ExchangeDeclare(exchange: ExchangeName, type: ExchangeType.Fanout);
-        _queueName = _channel.QueueDeclare().QueueName;
-        _channel.QueueBind(_queueName, ExchangeName, string.Empty);
+        // _channel.ExchangeDeclare(exchange: ExchangeName, type: ExchangeType.Fanout);
+        _channel.ExchangeDeclare(exchange: ExchangeNameUsingDirectMethod, type: ExchangeType.Direct);
+        
+        // _queueName = _channel.QueueDeclare().QueueName;
+        _queueName = _channel.QueueDeclare(PaymentOrderUpdateQueueName, false, false, false, null).QueueName;
+        
+        // _channel.QueueBind(_queueName, ExchangeName, string.Empty);
+        _channel.QueueBind(_queueName, ExchangeNameUsingDirectMethod, PaymentOrderRoutingKey);
     }
 
     protected override Task ExecuteAsync(CancellationToken stoppingToken)

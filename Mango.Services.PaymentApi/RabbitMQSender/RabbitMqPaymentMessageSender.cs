@@ -9,6 +9,12 @@ public class RabbitMqPaymentMessageSender : IRabbitMqPaymentMessageSender, IDisp
 {
     private readonly IConnection _connection;
     private const string ExchangeName = "PublishSubscribePaymentUpdate_Exchange";
+    
+    private const string ExchangeNameUsingDirectMethod = "DirectPaymentUpdate_Exchange";
+    private const string PaymentOrderUpdateQueueName = "PaymentOrderUpdateQueueName";
+    private const string PaymentEmailUpdateQueueName = "PaymentEmailUpdateQueueName";
+    private const string PaymentOrderRoutingKey = "PaymentOrderRoutingKey";
+    private const string PaymentEmailRoutingKey = "PaymentEmailRoutingKey";
 
     public RabbitMqPaymentMessageSender()
     {
@@ -26,12 +32,20 @@ public class RabbitMqPaymentMessageSender : IRabbitMqPaymentMessageSender, IDisp
     {
         using var channel = _connection.CreateModel();
         // channel.QueueDeclare(queue: queueName, durable: false, exclusive: false, autoDelete: false, arguments: null);
-        channel.ExchangeDeclare(exchange: ExchangeName, type: ExchangeType.Fanout, durable: false);
+        // channel.ExchangeDeclare(exchange: ExchangeName, type: ExchangeType.Fanout, durable: false);
+        
+        channel.ExchangeDeclare(exchange: ExchangeNameUsingDirectMethod, type: ExchangeType.Direct, durable: false);
+        channel.QueueDeclare(PaymentOrderUpdateQueueName, false, false, false, null);
+        channel.QueueDeclare(PaymentEmailUpdateQueueName, false, false, false, null);
+        channel.QueueBind(queue: PaymentOrderUpdateQueueName, exchange: ExchangeNameUsingDirectMethod, routingKey: PaymentOrderRoutingKey);
+        channel.QueueBind(queue: PaymentEmailUpdateQueueName, exchange: ExchangeNameUsingDirectMethod, routingKey: PaymentEmailRoutingKey);
 
         var json = JsonConvert.SerializeObject(message);
         var body = Encoding.UTF8.GetBytes(json);
 
-        channel.BasicPublish(exchange: ExchangeName, routingKey: string.Empty, basicProperties: null, body: body);
+        // channel.BasicPublish(exchange: ExchangeName, routingKey: string.Empty, basicProperties: null, body: body);
+        channel.BasicPublish(exchange: ExchangeNameUsingDirectMethod, routingKey: PaymentOrderRoutingKey, basicProperties: null, body: body);
+        channel.BasicPublish(exchange: ExchangeNameUsingDirectMethod, routingKey: PaymentEmailRoutingKey, basicProperties: null, body: body);
     }
 
     public void Dispose()

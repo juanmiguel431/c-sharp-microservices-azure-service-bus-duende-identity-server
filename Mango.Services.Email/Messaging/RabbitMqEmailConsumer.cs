@@ -15,6 +15,10 @@ public class RabbitMqEmailConsumer : BackgroundService
     private const string ExchangeName = "PublishSubscribePaymentUpdate_Exchange";
     private readonly string _queueName;
     
+    private const string ExchangeNameUsingDirectMethod = "DirectPaymentUpdate_Exchange";
+    private const string PaymentEmailUpdateQueueName = "PaymentEmailUpdateQueueName";
+    private const string PaymentEmailRoutingKey = "PaymentEmailRoutingKey";
+    
     public RabbitMqEmailConsumer(IEmailRepository emailRepository)
     {
         _emailRepository = emailRepository;
@@ -28,9 +32,14 @@ public class RabbitMqEmailConsumer : BackgroundService
         _connection = factory.CreateConnection();
         _channel = _connection.CreateModel();
         
-        _channel.ExchangeDeclare(exchange: ExchangeName, type: ExchangeType.Fanout);
-        _queueName = _channel.QueueDeclare().QueueName;
-        _channel.QueueBind(_queueName, ExchangeName, string.Empty);
+        // _channel.ExchangeDeclare(exchange: ExchangeName, type: ExchangeType.Fanout);
+        _channel.ExchangeDeclare(exchange: ExchangeNameUsingDirectMethod, type: ExchangeType.Direct);
+        
+        // _queueName = _channel.QueueDeclare().QueueName;
+        _queueName = _channel.QueueDeclare(PaymentEmailUpdateQueueName, false, false, false, null).QueueName;
+        
+        // _channel.QueueBind(_queueName, ExchangeName, string.Empty);
+        _channel.QueueBind(_queueName, ExchangeNameUsingDirectMethod, PaymentEmailRoutingKey);
     }
 
     protected override Task ExecuteAsync(CancellationToken stoppingToken)
